@@ -13,8 +13,11 @@ class BlogsController < ApplicationController
 
   def create
     blog = Blog.new(blog_params)
-    blog.save
-    redirect_to blogs_path(blog.id)
+    if blog.save
+      redirect_to blogs_path(blog.id)
+    else
+      redirect_to new_blog_path
+    end
   end
 
   def edit
